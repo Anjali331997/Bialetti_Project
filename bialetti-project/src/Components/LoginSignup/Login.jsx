@@ -1,4 +1,5 @@
 import React from "react";
+import axios from 'axios'
 import {
   Modal,
   ModalOverlay,
@@ -25,9 +26,27 @@ import { useDispatch } from "react-redux";
 
 const Login = ({ onLoginClose, isLoginOpen, onLoginOpen }) => {
   const dispatch = useDispatch()
+
+  const loginhandle = (values) => {
+
+    console.log(values);
+
+    axios.post('https://filthy-erin-eagle.cyclic.cloud/login', {
+      email:values.email,
+      password:values.password
+    })
+      .then(function (response) {
+        onLoginClose();
+      })
+      .catch(function (error) {
+        alert("Incorrect Credentials")
+      });
+
+
+  }
   return (
     <>
- 
+
 
       <Modal onClose={onLoginClose} isOpen={isLoginOpen} isCentered>
         <ModalOverlay />
@@ -44,18 +63,17 @@ const Login = ({ onLoginClose, isLoginOpen, onLoginOpen }) => {
                   rememberMe: false,
                 }}
                 onSubmit={(values) => {
-                  let data = JSON.parse(localStorage.getItem("userInfo"));
+                  // let data = JSON.parse(localStorage.getItem("userInfo"));
 
-                  if (values.email === data.email && values.password === data.password) {
+                  // if (values.email === data.email && values.password === data.password) {
 
-                    alert("Login Success")
-                    onLoginClose();
-                  }
-                  else {
-                    alert("Incorrect Credentials")
-                  }
-
-
+                  //   alert("Login Success")
+                  //   onLoginClose();
+                  // }
+                  // else {
+                  //   alert("Incorrect Credentials")
+                  // }
+                  loginhandle(values)
 
                 }}
               >

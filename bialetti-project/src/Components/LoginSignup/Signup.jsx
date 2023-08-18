@@ -23,6 +23,8 @@ import {
 import { Formik, Field, Form } from "formik";
 import Login from "./Login";
 import { useDispatch } from "react-redux";
+import axios from 'axios'
+
 
 const Signup = ({ isSignupOpen, onSignupClose, onSignupOpen }) => {
   const dispatch = useDispatch();
@@ -37,6 +39,29 @@ const Signup = ({ isSignupOpen, onSignupClose, onSignupOpen }) => {
     onSignupClose();
     onLoginOpen();
   };
+
+
+  const signup = (values) => {
+
+    console.log(values);
+
+    axios.post('https://filthy-erin-eagle.cyclic.cloud/signup', {
+      fname:values.Fname,
+      lname:values.Lname,
+      email:values.email,
+      password:values.password
+    })
+      .then(function (response) {
+        console.log(response);
+        onSignupClose();
+        onLoginOpen();
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+
+  }
 
   return (
     <>
@@ -61,16 +86,15 @@ const Signup = ({ isSignupOpen, onSignupClose, onSignupOpen }) => {
                   rememberMe: false,
                 }}
                 onSubmit={(values) => {
-                  console.log(values);
-                  localStorage.setItem("userInfo", JSON.stringify(values));
 
-                  onSignupClose();
-                  onLoginOpen();
+                  signup(values);
+
                 }}
               >
                 {({ handleSubmit, errors, touched }) => (
                   <Form onSubmit={handleSubmit}>
                     <VStack spacing={2} align="flex-start">
+
                       <FormControl isInvalid={!!errors.Fname && touched.Fname}>
                         <FormLabel htmlFor="Fname">First Name</FormLabel>
                         <Field

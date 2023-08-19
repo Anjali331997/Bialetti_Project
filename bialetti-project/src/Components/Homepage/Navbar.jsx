@@ -31,18 +31,18 @@ const Navbar = () => {
 
             </div>
             <div className="icons">
-                <a href="#">
+                <a href="">
                     <FaSearch />
                 </a>
-                <a href="#">
+                <a href="">
                     <FaHeart />
 
                 </a>
 
-                <a href="#" onClick={onSignupOpen} >
+                <a href="" onClick={onSignupOpen} >
                     <FaUser />
                 </a>
-                <Link to="./cart">
+                <Link to="/cart">
                     <FaShoppingBag />
                 </Link>
 
@@ -50,32 +50,25 @@ const Navbar = () => {
             <div className="menu">
                 <ul>
                     <li>
-                        <a href="https://www.bialetti.com/it_en/bialetti-torrefazione">
-                            COFFEE ROASTING BIALETTI
-                        </a>
+                        <Link to={'/product'}> OFFEE ROASTING BIALETTI</Link>
+                    </li>
+                    <li> <Link to={'/product'}>PRODUCTS</Link>
+
+                    </li>
+                    <li><
+                        Link to={'/product'}>MOKA EXPRESS</Link>
                     </li>
                     <li>
-                        <a href="#">
-                            MOKA EXPRESS
-                        </a>
-                    </li>
-                    <li>
-                        <Link to="./product">
-                            PRODUCTS
-                            <a href="#">
-                                {/* PRODUCTS */}
-                            </a>
-                        </Link>
+                        <Link to={`/product`}>NEWS</Link>
+
 
                     </li>
                     <li>
-                        <a href="#">NEWS</a>
+                        <Link to={`/product`}>INSPIRATION</Link>
+
                     </li>
                     <li>
-                        <a href="#">INSPIRATION</a>
-                    </li>
-                    <li>
-                        <a href="#">STORES</a>
+                        <Link to={`/product`}> STORES</Link>
                     </li>
                 </ul>
             </div>

@@ -147,6 +147,7 @@
   }
   
   .menu li {
+    margin-top: 5px;
     margin-right: 25px;
     font-weight: 600;
   }
